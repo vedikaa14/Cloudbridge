@@ -1,0 +1,17 @@
+Google Cloud Storage
+
+Google Cloud Storage is an object storage service provided by Google Cloud.
+
+It allows users and applications to store and access data as objects.
+
+Data is stored in containers called buckets.
+
+An object is the data stored in a bucket along with associated metadata.
+
+Google Cloud Storage can be used for backup, data storage, data lakes, application data, media, and serving content.
+
+Key concepts:
+- Cloud Storage: Google Cloud object storage service
+- Bucket: Container that stores objects
+- Object: Individual piece of data stored in a bucket
+- Use cases: File storage, backup, data lakes, media, and application data

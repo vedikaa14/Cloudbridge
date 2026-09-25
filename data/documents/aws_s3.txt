@@ -1,0 +1,19 @@
+AWS S3
+
+Amazon Simple Storage Service (Amazon S3) is an object storage service provided by AWS.
+
+S3 stores data as objects inside containers called buckets.
+
+An object consists of the data being stored and metadata that describes the object.
+
+A bucket is a container for objects. Each bucket has a name that must be unique within the relevant AWS namespace.
+
+Amazon S3 can be used to store files, documents, images, videos, backups, logs, and other types of data.
+
+S3 is designed for scalable storage and provides features such as access control, versioning, and lifecycle management.
+
+Key concepts:
+- S3: AWS object storage service
+- Bucket: Container that stores objects
+- Object: Individual piece of data stored in a bucket
+- Use cases: File storage, backup, data lakes, application data, and static content

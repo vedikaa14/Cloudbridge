@@ -1,0 +1,38 @@
+[
+  {
+    "page_content": "AWS S3\n\nAmazon Simple Storage Service (Amazon S3) is an object storage service provided by AWS.\n\nS3 stores data as objects inside containers called buckets.\n\nAn object consists of the data being stored and metadata that describes the object.\n\nA bucket is a container for objects. Each bucket has a name that must be unique within the relevant AWS namespace.\n\nAmazon S3 can be used to store files, documents, images, videos, backups, logs, and other types of data.",
+    "metadata": {
+      "source": "data\\documents\\aws_s3.txt"
+    }
+  },
+  {
+    "page_content": "S3 is designed for scalable storage and provides features such as access control, versioning, and lifecycle management.\n\nKey concepts:\n- S3: AWS object storage service\n- Bucket: Container that stores objects\n- Object: Individual piece of data stored in a bucket\n- Use cases: File storage, backup, data lakes, application data, and static content",
+    "metadata": {
+      "source": "data\\documents\\aws_s3.txt"
+    }
+  },
+  {
+    "page_content": "Azure Blob Storage\n\nAzure Blob Storage is an object storage service provided by Microsoft Azure.\n\nBlob Storage is designed to store large amounts of unstructured data such as text, binary data, images, videos, documents, and backups.\n\nData is organized into storage accounts, containers, and blobs.\n\nA container organizes a set of blobs, while a blob is an individual object stored in Azure Blob Storage.",
+    "metadata": {
+      "source": "data\\documents\\azure_blob.txt"
+    }
+  },
+  {
+    "page_content": "Azure Blob Storage can be used for backup, data lakes, application data, media files, and document storage.\n\nKey concepts:\n- Blob Storage: Azure object storage service\n- Storage account: Provides access to Azure Storage services\n- Container: Organizes blobs\n- Blob: Individual piece of data stored in a container\n- Use cases: File storage, backup, data lakes, media, and application data",
+    "metadata": {
+      "source": "data\\documents\\azure_blob.txt"
+    }
+  },
+  {
+    "page_content": "Google Cloud Storage\n\nGoogle Cloud Storage is an object storage service provided by Google Cloud.\n\nIt allows users and applications to store and access data as objects.\n\nData is stored in containers called buckets.\n\nAn object is the data stored in a bucket along with associated metadata.\n\nGoogle Cloud Storage can be used for backup, data storage, data lakes, application data, media, and serving content.",
+    "metadata": {
+      "source": "data\\documents\\gcp_cloud_storage.txt"
+    }
+  },
+  {
+    "page_content": "Key concepts:\n- Cloud Storage: Google Cloud object storage service\n- Bucket: Container that stores objects\n- Object: Individual piece of data stored in a bucket\n- Use cases: File storage, backup, data lakes, media, and application data",
+    "metadata": {
+      "source": "data\\documents\\gcp_cloud_storage.txt"
+    }
+  }
+]

@@ -1,0 +1,18 @@
+Azure Blob Storage
+
+Azure Blob Storage is an object storage service provided by Microsoft Azure.
+
+Blob Storage is designed to store large amounts of unstructured data such as text, binary data, images, videos, documents, and backups.
+
+Data is organized into storage accounts, containers, and blobs.
+
+A container organizes a set of blobs, while a blob is an individual object stored in Azure Blob Storage.
+
+Azure Blob Storage can be used for backup, data lakes, application data, media files, and document storage.
+
+Key concepts:
+- Blob Storage: Azure object storage service
+- Storage account: Provides access to Azure Storage services
+- Container: Organizes blobs
+- Blob: Individual piece of data stored in a container
+- Use cases: File storage, backup, data lakes, media, and application data
