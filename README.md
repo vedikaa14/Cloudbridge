@@ -1,296 +1,166 @@
-
 # CloudBridge – AI-Powered Multi-Cloud RAG Assistant
 
-CloudBridge is an AI-powered Retrieval-Augmented Generation (RAG) application that helps users compare cloud services across **AWS, Microsoft Azure, and Google Cloud Platform (GCP)**.
+CloudBridge is an AI-powered Retrieval-Augmented Generation (RAG) application...
 
-The system retrieves relevant information from cloud service documents using semantic search and uses **Google Gemini** to generate answers based on the retrieved context.
 
----
 
 ## 🚀 Features
 
 - Compare cloud services across AWS, Azure, and GCP
-- Document-based question answering using RAG
-- Semantic search using vector embeddings
-- FAISS-based vector similarity search
-- Gemini-powered answer generation
-- FastAPI REST API
-- Source information included with responses
-- Modular document ingestion and retrieval pipeline
+- Document-based question answering
+- Semantic search
+- FAISS vector similarity search
 
----
+
 
 ## 🏗️ System Architecture
 
 ```text
-                Cloud Documentation
-                        │
-                        ▼
-                Document Loading
-                        │
-                        ▼
-                    Chunking
-                        │
-                        ▼
-                  Embeddings
-                        │
-                        ▼
-                 FAISS Vector Index
-                        │
-                        │
-                        ▼
-                  User Question
-                        │
-                        ▼
-               Question Embedding
-                        │
-                        ▼
-                Semantic Retrieval
-                        │
-                        ▼
-                Relevant Context
-                        │
-                        ▼
-                     Gemini
-                        │
-                        ▼
-                  Final Answer
+Cloud Documentation
+        ↓
+Document Loading
+        ↓
+Chunking
+        ↓
+Embeddings
+        ↓
+FAISS Vector Index
+        ↓
+Semantic Retrieval
+        ↓
+Relevant Context
+        ↓
+Google Gemini
+        ↓
+Final Answer
 
 
-RAG Workflow
-
-CloudBridge follows a Retrieval-Augmented Generation pipeline:
-
-1. Document Loading
-
-Cloud service information is loaded from the data/documents directory.
-
-The current dataset contains information about:
-
-AWS S3
-Azure Blob Storage
-Google Cloud Storage
-2. Document Chunking
-
-Documents are divided into smaller chunks using LangChain's RecursiveCharacterTextSplitter.
-
-This makes the documents easier to process and retrieve efficiently.
-
-3. Embedding Generation
-
-Each document chunk is converted into a numerical vector using the all-MiniLM-L6-v2 Sentence Transformer model.
-
-These vectors represent the semantic meaning of the text.
-
-4. Vector Storage
-
-The generated embeddings are stored in a FAISS vector index.
-
-FAISS is used for efficient vector similarity search.
-
-5. Semantic Retrieval
-
-When a user submits a question:
-
-The question is converted into an embedding.
-FAISS searches for semantically similar document chunks.
-Relevant context is retrieved from the cloud documentation.
-6. Answer Generation
-
-The retrieved context and user question are passed to Google Gemini.
-
-Gemini generates the final answer using the retrieved information.
 
 🛠️ Tech Stack
 Technology	Purpose
-Python	Core application development
-FastAPI	REST API development
-LangChain Text Splitters	Document chunking
-Sentence Transformers	Text embeddings
-FAISS	Vector similarity search
-Google Gemini	AI answer generation
-Pydantic	API request validation
-Git & GitHub	Version control
-
+Python	Core application
+FastAPI	REST API
+Sentence Transformers	Embeddings
+FAISS	Vector search
+Google Gemini	Answer generation
 📂 Project Structure
 Cloudbridge/
-│
 ├── app/
-│   ├── __init__.py
-│   ├── load_documents.py
-│   ├── chunk_documents.py
-│   ├── create_embeddings.py
-│   ├── search.py
-│   ├── generate_answer.py
-│   └── main.py
-│
 ├── data/
-│   ├── documents/
-│   │   ├── aws_s3.txt
-│   │   ├── azure_blob.txt
-│   │   └── gcp_cloud_storage.txt
-│   │
-│   ├── chunks.json
-│   └── faiss_index.bin
-│
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+🔄 RAG Workflow
+1. Document Loading
+
+Cloud documentation is loaded from the data/documents directory.
+
+2. Document Chunking
+
+Documents are divided into smaller chunks...
+
+3. Embedding Generation
+
+Each chunk is converted into a numerical vector...
+
+4. Vector Storage
+
+The embeddings are stored in FAISS...
+
+5. Semantic Retrieval
+
+The user's question is converted into an embedding and compared with stored vectors.
+
+6. Answer Generation
+
+The retrieved context is passed to Google Gemini...
+
 🔌 API Endpoints
-
-CloudBridge provides a REST API using FastAPI.
-
-Health Check
 GET /
 
-Response:
+Health-check endpoint.
 
-{
-  "message": "CloudBridge API is running"
-}
-Ask a Question
 POST /ask
 
-Request:
+Accepts a user question and returns the generated answer and retrieved sources.
 
-{
-  "question": "Compare AWS S3, Azure Blob Storage, and Google Cloud Storage."
-}
-
-The API returns:
-
-The user's question
-The generated answer
-Retrieved document sources
-
-Example response structure:
-
-{
-  "question": "Compare AWS S3, Azure Blob Storage, and Google Cloud Storage.",
-  "answer": "Generated answer based on the retrieved context.",
-  "sources": [
-    {
-      "cloud": "AWS",
-      "source": "data\\documents\\aws_s3.txt"
-    },
-    {
-      "cloud": "Azure",
-      "source": "data\\documents\\azure_blob.txt"
-    },
-    {
-      "cloud": "GCP",
-      "source": "data\\documents\\gcp_cloud_storage.txt"
-    }
-  ]
-}
 ▶️ Run Locally
-1. Clone the repository
+1. Clone the Repository
 git clone https://github.com/vedikaa14/Cloudbridge.git
 cd Cloudbridge
-2. Create a virtual environment
+2. Create Virtual Environment
 python -m venv venv
-
-Activate it on Windows:
-
+3. Activate Virtual Environment
 .\venv\Scripts\Activate.ps1
-3. Install dependencies
+4. Install Dependencies
 pip install -r requirements.txt
-4. Configure the Gemini API Key
+5. Configure Gemini API Key
 
-Create a .env file in the project root:
+Create .env:
 
 GEMINI_API_KEY=your_api_key_here
-
-Do not commit the .env file to GitHub.
-
-The .env file is already excluded through .gitignore.
-
-5. Start the FastAPI server
+6. Start the Application
 uvicorn app.main:app --reload
+📖 API Documentation
 
-The API will run at:
-
-http://127.0.0.1:8000
-📖 Interactive API Documentation
-
-FastAPI automatically provides interactive API documentation through Swagger UI.
-
-Open:
+Once the application is running, open:
 
 http://127.0.0.1:8000/docs
 
-From Swagger UI, you can test the /ask endpoint directly.
+This opens the interactive FastAPI Swagger documentation.
 
-💡 Example Use Case
+💡 Example
 Question
 Compare AWS S3, Azure Blob Storage, and Google Cloud Storage.
 Processing Flow
 User Question
-      │
-      ▼
+      ↓
 Question Embedding
-      │
-      ▼
+      ↓
 FAISS Similarity Search
-      │
-      ▼
-Relevant AWS + Azure + GCP Context
-      │
-      ▼
+      ↓
+Relevant Cloud Context
+      ↓
 Google Gemini
-      │
-      ▼
-Grounded Answer + Sources
-
-CloudBridge can therefore be used as a documentation-based assistant for understanding and comparing cloud services.
-
+      ↓
+Grounded Answer
 🔐 Environment Variables
 
-CloudBridge uses the following environment variable:
+CloudBridge uses:
 
 GEMINI_API_KEY
 
-The API key should be stored in a local .env file.
-
-The .env file is excluded from version control using .gitignore.
+The .env file is excluded from Git using .gitignore.
 
 📌 Current Scope
 
-The current version of CloudBridge is an MVP using a small documentation dataset and a local FAISS vector index.
+The current version is an MVP using a small documentation dataset and a local FAISS vector index.
 
 Currently supported:
 
 Text-based documents
-AWS, Azure, and GCP cloud service information
+AWS, Azure, and GCP information
 Semantic retrieval
-Gemini-based answer generation
+Gemini answer generation
 FastAPI REST API
 🔮 Future Improvements
-
-The project can be extended with:
-
 PDF and DOCX document ingestion
-Larger cloud documentation collections
+Larger documentation collections
 Persistent vector databases
-Metadata-based filtering
-Hybrid keyword and semantic search
+Metadata filtering
+Hybrid search
 Retrieval reranking
 Improved source citations
 Docker containerization
-AWS cloud deployment
+AWS deployment
 Automated document ingestion
-Scalable document processing
 🎯 Learning Outcomes
-
-Through CloudBridge, the project covers practical implementation of:
-
 Retrieval-Augmented Generation (RAG)
 Document processing
 Text chunking
 Vector embeddings
 Semantic search
-FAISS vector indexing
-LLM-based answer generation
-REST API development with FastAPI
-Environment variable management
-Git and GitHub version control                  
+FAISS
+LLM integration
+FastAPI REST APIs
+Git and GitHub
