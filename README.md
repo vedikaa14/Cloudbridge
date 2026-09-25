@@ -50,6 +50,9 @@ Cloudbridge/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+
+
+
 🔄 RAG Workflow
 1. Document Loading
 
@@ -96,6 +99,9 @@ python -m venv venv
 pip install -r requirements.txt
 5. Configure Gemini API Key
 
+
+
+
 Create .env:
 
 GEMINI_API_KEY=your_api_key_here
@@ -132,8 +138,9 @@ GEMINI_API_KEY
 
 The .env file is excluded from Git using .gitignore.
 
-📌 Current Scope
 
+
+📌 Current Scope
 The current version is an MVP using a small documentation dataset and a local FAISS vector index.
 
 Currently supported:
@@ -143,6 +150,8 @@ AWS, Azure, and GCP information
 Semantic retrieval
 Gemini answer generation
 FastAPI REST API
+
+
 🔮 Future Improvements
 PDF and DOCX document ingestion
 Larger documentation collections
@@ -154,6 +163,8 @@ Improved source citations
 Docker containerization
 AWS deployment
 Automated document ingestion
+
+
 🎯 Learning Outcomes
 Retrieval-Augmented Generation (RAG)
 Document processing
