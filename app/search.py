@@ -1,6 +1,17 @@
 import json
 import faiss
-from sentence_transformers import SentenceTransformer
+import numpy as np
+from google import genai
+from google.genai import types
+from dotenv import load_dotenv
+
+
+# Load environment variables
+load_dotenv()
+
+
+# Create Gemini client
+client = genai.Client()
 
 
 # Load FAISS index
@@ -12,20 +23,24 @@ with open("data/chunks.json", "r", encoding="utf-8") as file:
     chunks = json.load(file)
 
 
-# Load embedding model
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
-
 def retrieve_context(question, top_k=6):
     """
     Retrieve relevant chunks and select
     the best chunk from each cloud.
     """
 
-    # Convert question into an embedding
-    question_embedding = model.encode(
-        [question],
-        convert_to_numpy=True
+    # Convert question into a Gemini embedding
+    result = client.models.embed_content(
+        model="gemini-embedding-001",
+        contents=question,
+        config=types.EmbedContentConfig(
+            output_dimensionality=768
+        )
+    )
+
+    question_embedding = np.array(
+        [result.embeddings[0].values],
+        dtype="float32"
     )
 
     # Search FAISS for the top relevant chunks

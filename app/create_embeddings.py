@@ -1,8 +1,18 @@
 from pathlib import Path
 import json
 import faiss
-from sentence_transformers import SentenceTransformer
+from google import genai
+from google.genai import types
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from dotenv import load_dotenv
+
+
+# Load environment variables
+load_dotenv()
+
+
+# Create Gemini client
+client = genai.Client()
 
 
 # 1. Load documents
@@ -48,14 +58,27 @@ print("Total chunks:", len(all_chunks))
 texts = [chunk["page_content"] for chunk in all_chunks]
 
 
-# 5. Load embedding model
-model = SentenceTransformer("all-MiniLM-L6-v2")
+# 5. Generate Gemini embeddings
+result = client.models.embed_content(
+    model="gemini-embedding-001",
+    contents=texts,
+    config=types.EmbedContentConfig(
+        output_dimensionality=768
+    )
+)
 
 
-# 6. Convert chunks into embeddings
-embeddings = model.encode(
-    texts,
-    convert_to_numpy=True
+# 6. Convert embeddings to FAISS-compatible format
+embeddings = [
+    embedding.values
+    for embedding in result.embeddings
+]
+
+import numpy as np
+
+embeddings = np.array(
+    embeddings,
+    dtype="float32"
 )
 
 
@@ -97,3 +120,4 @@ with open(
 
 print("FAISS index saved successfully.")
 print("Chunk data saved successfully.")
+
